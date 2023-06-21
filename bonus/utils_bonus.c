@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmuni <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: bianca <bianca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:11:28 by bmuni             #+#    #+#             */
-/*   Updated: 2022/11/25 14:49:45 by bmuni            ###   ########.fr       */
+/*   Updated: 2023/06/21 12:33:06 by bianca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
+
+char	*ft_strjoin_m(char *s1, char s2)
+{
+	int		i;
+	char	*ret;
+
+	i = 0;
+	ret = malloc(sizeof(char) * (ft_strlen(s1) + 2));
+	if (!ret)
+		return (NULL);
+	while (s1[i])
+	{
+		ret[i] = s1[i];
+		i++;
+	}
+	free(s1);
+	ret[i] = s2;
+	ret[++i] = '\0';
+	return (ret);
+}
 
 void	ft_send_message(int pid, char *str)
 {
@@ -69,9 +89,9 @@ void	ft_sig(int sig)
 		i = 1;
 	}
 	if (sig == SIGUSR2)
-		str = ft_strjoin(str, "0");
+		str = ft_strjoin_m(str, '0');
 	else if (sig == SIGUSR1)
-		str = ft_strjoin(str, "1");
+		str = ft_strjoin_m(str, '1');
 	if (i == 8)
 	{
 		ft_convert_to_dec(str);

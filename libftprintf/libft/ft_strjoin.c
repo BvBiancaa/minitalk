@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bianca <bianca@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 23:13:28 by bmuni             #+#    #+#             */
-/*   Updated: 2023/06/21 11:55:02 by bianca           ###   ########.fr       */
+/*   Created: 2022/10/04 20:37:12 by bmuni             #+#    #+#             */
+/*   Updated: 2023/06/21 12:00:43 by bianca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include <stdlib.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	pid;
+	int		i;
+	int		n;
+	char	*ret;
 
-	if (argc != 3 || argv[1] == NULL || argv[2] == NULL)
+	i = 0;
+	n = 0;
+	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (ret == NULL)
+		return (NULL);
+	while (s1[i])
 	{
-		write(1, "Insert a valid pid and the string to send!\n", 53);
-		return (1);
+		ret[i] = s1[i];
+		i++;
 	}
-	pid = ft_atoi(argv[1]);
-	ft_send_message(pid, argv[2]);
+	while (s2[n])
+	{
+		ret[i + n] = s2[n];
+		n++;
+	}
+	ret[i + n] = '\0';
+	return (ret);
 }

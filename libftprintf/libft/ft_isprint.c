@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bianca <bianca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bmuni <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 23:13:28 by bmuni             #+#    #+#             */
-/*   Updated: 2023/06/21 11:55:02 by bianca           ###   ########.fr       */
+/*   Created: 2022/10/04 12:19:13 by bmuni             #+#    #+#             */
+/*   Updated: 2022/10/05 17:16:57 by bmuni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_isprint(int a)
 {
-	int	pid;
-
-	if (argc != 3 || argv[1] == NULL || argv[2] == NULL)
-	{
-		write(1, "Insert a valid pid and the string to send!\n", 53);
+	if (a >= 32 && a <= 126)
 		return (1);
-	}
-	pid = ft_atoi(argv[1]);
-	ft_send_message(pid, argv[2]);
+	return (0);
 }

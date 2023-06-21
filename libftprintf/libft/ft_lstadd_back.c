@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bianca <bianca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bmuni <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 23:13:28 by bmuni             #+#    #+#             */
-/*   Updated: 2023/06/21 11:55:02 by bianca           ###   ########.fr       */
+/*   Created: 2022/10/07 15:55:24 by bmuni             #+#    #+#             */
+/*   Updated: 2022/10/09 19:05:17 by bmuni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	pid;
+	t_list	*uno;
 
-	if (argc != 3 || argv[1] == NULL || argv[2] == NULL)
+	if (!new)
+		return ;
+	if (!*lst)
 	{
-		write(1, "Insert a valid pid and the string to send!\n", 53);
-		return (1);
+		*lst = new;
+		return ;
 	}
-	pid = ft_atoi(argv[1]);
-	ft_send_message(pid, argv[2]);
+	uno = ft_lstlast(*lst);
+	uno->next = new;
 }

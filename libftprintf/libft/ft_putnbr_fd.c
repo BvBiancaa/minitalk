@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bianca <bianca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bmuni <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 23:13:28 by bmuni             #+#    #+#             */
-/*   Updated: 2023/06/21 11:55:02 by bianca           ###   ########.fr       */
+/*   Created: 2022/10/05 14:51:14 by bmuni             #+#    #+#             */
+/*   Updated: 2022/10/07 13:23:38 by bmuni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int	main(int argc, char **argv)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	pid;
+	int		sign;
+	char	c;
 
-	if (argc != 3 || argv[1] == NULL || argv[2] == NULL)
+	sign = 1;
+	if (n < 0)
 	{
-		write(1, "Insert a valid pid and the string to send!\n", 53);
-		return (1);
+		ft_putchar_fd('-', fd);
+		sign = -1;
 	}
-	pid = ft_atoi(argv[1]);
-	ft_send_message(pid, argv[2]);
+	if (n / 10)
+		ft_putnbr_fd(n / 10 * sign, fd);
+	c = '0' + n % 10 * sign;
+	ft_putchar_fd(c, fd);
 }

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bianca <bianca@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bmuni <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 23:13:28 by bmuni             #+#    #+#             */
-/*   Updated: 2023/06/21 11:55:02 by bianca           ###   ########.fr       */
+/*   Created: 2022/10/05 14:02:10 by bmuni             #+#    #+#             */
+/*   Updated: 2022/10/09 13:00:11 by bmuni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	pid;
+	unsigned int	i;
 
-	if (argc != 3 || argv[1] == NULL || argv[2] == NULL)
+	i = 0;
+	while (s[i])
 	{
-		write(1, "Insert a valid pid and the string to send!\n", 53);
-		return (1);
+		(*f)(i, s + i);
+		i++;
 	}
-	pid = ft_atoi(argv[1]);
-	ft_send_message(pid, argv[2]);
 }
